@@ -19,18 +19,16 @@ function veriIdade(comp, estaCompanhado){
         " para os seguintes locais: "+listaDeDestinos);
         
     }
-    else{
-        if(estaCompanhado){
-            console.log("O seu responsável pode comparar passagens para "+
-            "os seguintes destinos: "+listaDeDestinos);
-            
-        }
+    else if(estaCompanhado){
+        console.log("O seu responsável pode comparar passagens para "+
+        "os seguintes destinos: "+listaDeDestinos);
+            }
         else{
             console.log("Você mão tem idade para comprar "+
             "as passagens");
         }
-    }
 }
+
 
 veriIdade(idadeComprador1, estaCompanhado1);
 
