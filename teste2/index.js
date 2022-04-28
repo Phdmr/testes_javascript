@@ -1,11 +1,12 @@
 class ContaCorrente {
-    saldo;
+    #saldo = 0;
     agencia;
 
     sacar(valor){
-        if(this.saldo >= valor){
-            this.saldo -= valor;
-            console.log("Você sacou: ", valor,"\n O seu novo saldo é: ",this.saldo)
+        if(this.#saldo >= valor){
+            this.#saldo -= valor;
+            //Esta string foi escrita com Template Literals, portanto é envolvida por ``(acentos graves) ao invés de ''(aspas simples)
+            console.log(`Você sacou: R$${valor} \n O seu novo saldo é: R$${this.#saldo}`)
         }
         else{
             console.log("Você não pode sacar esse valor. \n Tente novamente mais tarde")
@@ -13,8 +14,19 @@ class ContaCorrente {
     }
 
     depositar(valor){
-        this.saldo += valor;
-        console.log("Você depositou R$",valor,"\n O seu novo saldo é: R$",this.saldo)
+        if(valor > 0){
+            this.#saldo += valor;
+            //Esta string foi escrita com Template Literals, portanto é envolvida por ``(acentos graves) ao invés de ''(aspas simples)
+            console.log(`Você depositou R$${valor} \n O seu novo saldo é: R$${this.#saldo}`)
+        }
+        else{
+            //Esta string foi escrita com Template Literals, portanto é envolvida por ``(acentos graves) ao invés de ''(aspas simples)
+            console.log(`O valor de depósito R$${valor} é inválido!`)
+        }    
+    }
+    mostrarSaldo(){
+        //Esta string foi escrita com Template Literals, portanto é envolvida por ``(acentos graves) ao invés de ''(aspas simples)
+        console.log(`O seu saldo atual é: R$${this.#saldo}`)
     }
 }
 
@@ -42,17 +54,20 @@ contacorrenteRicardo.saldo = 0;
 contacorrenteRicardo.agencia = 202;
 
 
-console.log(contacorrenteRicardo.saldo)
 
-contacorrenteRicardo.saldo += 200;
-console.log(contacorrenteRicardo.saldo)
+
+contacorrenteRicardo.depositar(200);
 
 contacorrenteRicardo.sacar(100);
 
-console.log(contacorrenteRicardo.saldo);
+contacorrenteRicardo.mostrarSaldo();
+
+
+contacorrenteRicardo.depositar(-20);
+contacorrenteRicardo.depositar(85);
 
 
 const contacorrenteAlice = new ContaCorrente;
 
 
-console.log(cliente1, "\n", cliente2);
+console.log(cliente1);
