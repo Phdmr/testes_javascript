@@ -1,0 +1,75 @@
+//JS e JSON//
+
+var casJson = `{"funcionarios":[{"primeiroNome":"José","ultimoNome":"Brito","idade":32,"graduacao":true,"TempoDeServico":4},{"primeiroNome":"Aline","ultimoNome":"Mendes","idade":27,"graduacao":false,"TempoDeServico":2},{"primeiroNome":"Augusto","ultimoNome":"Pontes","idade":19,"graduacao":true,"TempoDeServico":1}]}`;
+
+function ordem(param) {
+    return function(a1, a2) {
+        if (a1[param] > a2[param]) {
+            return 1;
+        } else if (a1[param] < a2[param]) {
+            return -1;
+        }
+        return 0;
+    }
+}
+
+
+var passa = JSON.parse(casJson);
+
+console.log(passa.funcionarios[2].TempoDeServico)
+
+for (var ch in passa.funcionarios) {
+    console.log(passa.funcionarios[ch].primeiroNome)
+}
+
+passa.funcionarios.sort(ordem("TempoDeServico"))
+
+for (let x in passa.funcionarios){
+  console.log(passa.funcionarios[x].TempoDeServico)
+}
+
+//HTML//
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML, CSS and JavaScript demo</title>
+</head>
+<body>
+<!-- Start your code here -->
+  
+<h1 id="nomes"></h1>
+  
+<p id="nomu"></p>
+
+<!-- End your code here -->
+</body>
+  <script>
+function ordem(param) {
+  return function(a1,a2) {
+    if (a1[param] > a2[param]){
+      return 1;
+    }
+    else {
+      return -1;
+    }
+    return 0;
+  }  
+}
+document.getElementById("nomes").innerHTML = passa.funcionarios[2].primeiroNome+" "+ passa.funcionarios[2].ultimoNome;
+
+    for(var ch in passa.funcionarios){
+      document.write(passa.funcionarios[ch].primeiroNome+" Possui  "+passa.funcionarios[ch].TempoDeServico+" anos de tempo de serviço <br>")}
+    
+    passa.funcionarios.sort(ordem("primeiroNome"))
+      for (var kj in passa.funcionarios){
+      document.write(passa.funcionarios[kj].primeiroNome+"<br>")
+      }
+
+    passa.funcionarios.sort(ordem("TempoDeServico"))
+      for (let tu in passa.funcionarios) {
+      document.write(passa.funcionarios[tu].TempoDeServico+"<br>")
+        }
+
+  </script>
+</html>
