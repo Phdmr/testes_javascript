@@ -1,73 +1,46 @@
-class ContaCorrente {
-    #saldo = 0;
+class Cliente{
+    nome;
+    cpf;
+}
+
+class ContaCorrente{
     agencia;
+     // #saldo =0 https://github.com/tc39/proposal-class-fields#private-fields
+    _saldo = 0;
 
     sacar(valor){
-        if(this.#saldo >= valor){
-            this.#saldo -= valor;
-            //Esta string foi escrita com Template Literals, portanto é envolvida por ``(acentos graves) ao invés de ''(aspas simples)
-            console.log(`Você sacou: R$${valor} \n O seu novo saldo é: R$${this.#saldo}`)
-        }
-        else{
-            console.log("Você não pode sacar esse valor. \n Tente novamente mais tarde")
+        if(this._saldo >= valor){
+            this._saldo -= valor;
+            return valor;
         }
     }
 
     depositar(valor){
-        if(valor > 0){
-            this.#saldo += valor;
-            //Esta string foi escrita com Template Literals, portanto é envolvida por ``(acentos graves) ao invés de ''(aspas simples)
-            console.log(`Você depositou R$${valor} \n O seu novo saldo é: R$${this.#saldo}`)
-        }
-        else{
-            //Esta string foi escrita com Template Literals, portanto é envolvida por ``(acentos graves) ao invés de ''(aspas simples)
-            console.log(`O valor de depósito R$${valor} é inválido!`)
-        }    
-    }
-    mostrarSaldo(){
-        //Esta string foi escrita com Template Literals, portanto é envolvida por ``(acentos graves) ao invés de ''(aspas simples)
-        console.log(`O seu saldo atual é: R$${this.#saldo}`)
+        if(valor <= 0)
+        {
+            return;
+        } 
+        this._saldo += valor;           
     }
 }
 
-class Cliente  {
-    nome;
-    cpf;
-    rg;
-}
-
-const cliente1 = new Cliente;
+const cliente1 = new Cliente();
 cliente1.nome = "Ricardo";
-cliente1.cpf = 01201200120;
-cliente1.rg = 555555;
+cliente1.cpf = 11122233309;
 
-
-
-const cliente2 = new Cliente;
+const cliente2 = new Cliente();
 cliente2.nome = "Alice";
-cliente2.cpf = 0202221457;
-cliente2.rg = 7878788;
+cliente2.cpf = 88822233309;
 
 
-const contacorrenteRicardo = new ContaCorrente;
-contacorrenteRicardo.saldo = 0;
-contacorrenteRicardo.agencia = 202;
+const contaCorrenteRicardo = new ContaCorrente();
+contaCorrenteRicardo.agencia = 1001;
 
+contaCorrenteRicardo.depositar(-100);
+contaCorrenteRicardo.depositar(100);
+contaCorrenteRicardo.depositar(100);
 
+const valorSacado = contaCorrenteRicardo.sacar(50);
+console.log(valorSacado);
 
-
-contacorrenteRicardo.depositar(200);
-
-contacorrenteRicardo.sacar(100);
-
-contacorrenteRicardo.mostrarSaldo();
-
-
-contacorrenteRicardo.depositar(-20);
-contacorrenteRicardo.depositar(85);
-
-
-const contacorrenteAlice = new ContaCorrente;
-
-
-console.log(cliente1);
+console.log(contaCorrenteRicardo);
